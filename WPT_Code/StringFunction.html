@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <style>
+            span{
+                color: red;
+            }
+        </style>
+          
+          <script>
+            function validationdata(string,error)
+            {
+                var a = document.getElementById(string).value;
+                if(a==="" || a.trim().length===0 || !isNaN(a) )
+               {
+                    document.getElementById(error).innerHTML="String is required!!";
+                    return false;
+                   }
+                   document.getElementById(error).innerHTML="";
+                   return true;
+            }
+            function validationString(){
+                var flag = validationdata("str","error1");
+                if(flag)
+                 changestring(); 
+            }
+
+            function  changestring(){
+                var sel=document.getElementById("operation");
+                var pos = sel.selectedIndex
+                var calc=sel.options[pos].value;
+                var str = document.getElementById("str").value;
+                switch(calc){
+                    case "upper":
+                        result="uppercase: "+str.toUpperCase();
+                        break;
+                    case "lower":
+                    result="LowerCase: "+str.toLowerCase();
+                        break;
+                    case "charAt":
+                        s=prompt("Enter the postion to find character")
+                        result="CharAt: "+str.charAt(s);
+                        break;
+                    case "slice":
+                    s=prompt("Enter the  starting and ending position as comma seperated value")
+                    arr=s.split(',');
+                        result="Concatenate string:  "+str.slice(arr[0],arr[1]);    
+                        break;   
+                    case "indexof":
+                        s=prompt("Enter String to search")
+                        result="index data:"+str.indexOf(s);
+                        break;
+                    case "concat":
+                            s=prompt("Enter String to concat")
+                            result ="concatenate string: "+str.concat(s);
+                        break;
+                    case "match":
+                        
+                        pattern= prompt("Enter the pattern")
+                        result="match: "+str.match(pattern);
+                        break;
+                    case "search":
+                    
+                        pattern=prompt("Enter the pattern")
+                        result="positon: "+str.search(pattern);
+                        break;
+                    case "replace":
+                    
+                        pattern=prompt("Enter the pattern")
+                        rp=prompt("Enter The new String")
+                        result="replace: "+str.replace(pattern,rp);
+                        break;   
+                    case "includes":
+                    p=prompt("Enter the search");
+                        result="includes: "+str.includes(p);
+                        break;    
+                    case "split":
+                    p=prompt("Enter the delimiter:");
+                        result="splits: "+str.split(p);
+                        break;        
+                    }
+                    document.getElementById("mydiv").innerHTML=result;
+
+            }
+          </script>
+    </head>
+    <body style="background-color: black; color: brown;">
+        <fieldset style="margin-left: 20%; margin-right: 30%; margin-top:10%; background-color: antiquewhite;">
+        <form action="form" align="center">
+            Enter String: <input type="text" name="string" id="str"></input><span>*</span>
+            <span id="error1"></span><br>
+            <br>
+            Operation: <select name="select" id="operation">
+                        <option value="upper">upper case</option>
+                        <option value="lower">lower case</option>
+                        <option value="charAt">charAt</option>
+                        <option value="slice">slice</option>
+                        <option value="indexof">indexOf</option>
+                        <option value="concat">concat</option>
+                        <option value="match">match</option>
+                        <option value="search">search</option>
+                        <option value="replace">replace</option>
+                        <option value="includes">includes</option>
+                        <option value="split">split</option>
+            </select>
+            <button type="button" name="btn" id="btn" value="btn" onclick="validationString()">display Operation</button>
+        </form>
+          <div id="mydiv"></div>
+    </fieldset>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <style>
+
+            fieldset{
+                margin-top: 200px;
+                margin-left: 30%;
+                margin-right: 30%;
+            }
+            span{
+                color: red;
+            }
+        </style>
+        <script>
+            function validationdata(numid,errmsg){
+                var a=document.getElementById(numid).value;
+                if(a==="" || isNaN(a)){
+                 document.getElementById(errmsg).innerHTML="Enter the Valid Numbers!!"
+                 return false
+                }
+                document.getElementById(errmsg).innerHTML="";
+                return true;
+            }
+
+            function validationcheck(){
+                var flag=validationdata('id1',"error1");
+                var flag1=validationdata('id2',"error2");
+
+                if(flag && flag1){
+                  validation();
+                 }
+            }
+
+            function validation()
+            {
+                var a=parseInt(document.getElementById('id1').value);
+                var b=parseInt(document.getElementById('id2').value);
+                var ans=a+b;
+                document.getElementById("mydiv").innerHTML="Addition : "+ans;
+                document.getElementById("r1").value=ans;
+            }
+        </script>
+    </head>
+    <body style="background-color: black; color: brown;">
+        <form action="frm">
+            <fieldset style="background-color: aqua;" >
+            <table align="center" cellspacing="10px">
+                <tr>
+                    <td>Number1:</td>
+                    <td>
+                        <input type="text" name="n1" id="id1"><span>*</span><span id="error1"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Number2:</td>
+                    <td>
+                        <input type="text" name="n2" id="id2"><span>*</span><span id="error2"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>result:</td>
+                    <td>
+                        <input type="text" name="r1" id="r1" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    
+                    <td>
+                        <button type="button" name="add" id="btn" onclick="validationcheck()">Add Number</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+    
+    <div id="mydiv" align="center">
+
+    </div>
+</fieldset>
+    </body>
+</html>
